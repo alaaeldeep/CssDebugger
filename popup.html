@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Advanced Outline Debugger</title>
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                margin: 0;
+                padding: 15px;
+                background: #f4f4f4;
+                color: #333;
+                width: 300px;
+            }
+            h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            form {
+                background: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            }
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 14px;
+            }
+            input[type="text"],
+            input[type="number"],
+            select,
+            input[type="color"] {
+                width: 100%;
+                padding: 6px 8px;
+                margin-top: 4px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+            input[type="checkbox"] {
+                margin-right: 6px;
+            }
+            button {
+                background: #0078d7;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                margin-top: 10px;
+                width: 100%;
+            }
+            button:hover {
+                background: #005ea6;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Advanced Outline Debugger</h2>
+        <button id="toggleDebugger">Toggle Debugger</button>
+        <form id="settingsForm">
+            <label>
+                Outline Color:
+                <input
+                    type="color"
+                    id="outlineColor"
+                    name="outlineColor"
+                    value="#ff0000"
+                />
+            </label>
+            <label>
+                Outline Thickness (px):
+                <input
+                    type="number"
+                    id="outlineThickness"
+                    name="outlineThickness"
+                    value="1"
+                    min="1"
+                />
+            </label>
+            <label>
+                Outline Style:
+                <select id="outlineStyle" name="outlineStyle">
+                    <option value="solid">Solid</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="dotted">Dotted</option>
+                </select>
+            </label>
+            <label>
+                CSS Selector:
+                <input
+                    type="text"
+                    id="selector"
+                    name="selector"
+                    placeholder="e.g., *, .my-class, #myId"
+                    value="*"
+                />
+            </label>
+            <label>
+                <input type="checkbox" id="enableGrid" name="enableGrid" />
+                Enable Grid Overlay
+            </label>
+            <label>
+                Grid Size (px):
+                <input
+                    type="number"
+                    id="gridSize"
+                    name="gridSize"
+                    value="20"
+                    min="5"
+                />
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    id="enableTooltips"
+                    name="enableTooltips"
+                />
+                Enable Dimension Tooltips
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    id="enableInspector"
+                    name="enableInspector"
+                />
+                Enable Click-to‑Inspect (Shift + Click)
+            </label>
+        </form>
+        <script src="popup.js"></script>
+    </body>
+</html>
