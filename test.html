@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Test Page for CSS Debugger Extension</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.5;
+                color: #333;
+                height: 100vh;
+            }
+
+            header {
+                background: #4caf50;
+                color: white;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            nav {
+                background: #f0f0f0;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+            nav ul {
+                display: flex;
+                gap: 15px;
+                list-style-type: none;
+            }
+            nav a {
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+            }
+
+            main {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .highlight-section {
+                background: #fafafa;
+                border: 1px solid #ccc;
+                flex: 1 1 300px;
+                padding: 20px;
+            }
+            .highlight-section h2 {
+                margin-bottom: 10px;
+            }
+
+            #featured {
+                background: #fffae6;
+                border: 1px solid #eddc9c;
+            }
+
+            .content-box {
+                padding: 10px;
+                border: 1px solid #ccc;
+                background-color: #fff;
+                margin-bottom: 15px;
+            }
+
+            footer {
+                margin-top: 20px;
+                padding: 10px;
+                text-align: center;
+                background: #eaeaea;
+                font-size: 14px;
+            }
+
+            /* Simple demonstration of nested elements */
+            .nested-container {
+                margin-top: 20px;
+                border: 2px dashed #ccc;
+                padding: 10px;
+                position: relative;
+            }
+            .nested-container .inner {
+                margin: 10px;
+                padding: 10px;
+                border: 1px dotted #999;
+            }
+        </style>
+    </head>
+    <body>
+        <header id="topHeader">
+            <h1>Welcome to the CSS Debugger Test Page</h1>
+            <p>Use your extension to highlight or inspect these elements.</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#section1">Section One</a></li>
+                <li><a href="#section2">Section Two</a></li>
+                <li><a href="#featured">Featured</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="highlight-section" id="section1">
+                <h2>Section One</h2>
+                <p>
+                    This is the first section of the test page. It contains some
+                    nested elements and text. Try toggling outlines or enabling
+                    dimension tooltips to see the width and height of these
+                    elements.
+                </p>
+                <div class="content-box">
+                    <p>Content Box 1</p>
+                </div>
+                <div class="content-box">
+                    <p>Content Box 2</p>
+                </div>
+                <div class="nested-container">
+                    <p>
+                        This is a <strong>nested container</strong> with dashed
+                        borders.
+                    </p>
+                    <div class="inner">Inner Box #1</div>
+                    <div class="inner">Inner Box #2</div>
+                </div>
+            </section>
+
+            <section class="highlight-section" id="section2">
+                <h2>Section Two</h2>
+                <p>
+                    Here is another section with an image and a list. Notice the
+                    different nesting levels for your debugger to outline.
+                    Shift+Click to inspect elements (if you enabled
+                    click-to-inspect).
+                </p>
+                <ul>
+                    <li class="content-box">List Item 1</li>
+                    <li class="content-box">List Item 2</li>
+                    <li class="content-box">List Item 3</li>
+                </ul>
+                <!-- Using a simple 1x1 pixel placeholder (GIF) stretched to 150x150 -->
+                <img
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
+                    alt="Placeholder Image"
+                    width="150"
+                    height="150"
+                    style="display: block; margin-top: 10px"
+                />
+            </section>
+
+            <section class="highlight-section" id="featured">
+                <h2>Featured Section</h2>
+                <p>
+                    This section has a slightly different background color and
+                    border. It’s a great place to test color-coded outlines.
+                </p>
+                <div class="content-box">
+                    <p>Featured Content Box</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 CSS Debugger Test Page. All Rights Reserved.</p>
+        </footer>
+    </body>
+</html>
