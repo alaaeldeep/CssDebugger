@@ -1,17 +1,14 @@
 (() => {
-    // Toggle the debugger: remove if already active, otherwise activate
     if (window.__outlineDebuggerActive) {
         removeDebugger();
         window.__outlineDebuggerActive = false;
-        console.log("Outline Debugger deactivated");
     } else {
         activateDebugger();
         window.__outlineDebuggerActive = true;
-        console.log("Outline Debugger activated");
     }
 
     function activateDebugger() {
-        chrome.storage.sync.get(
+        chrome.storage.local.get(
             {
                 outlineColor: "#ff0000",
                 outlineThickness: "1",
@@ -23,13 +20,11 @@
                 enableInspector: false,
             },
             (settings) => {
-                // Inject outline styles
                 const outlineStyleEl = document.createElement("style");
                 outlineStyleEl.id = "outline-debugger-outlines";
                 outlineStyleEl.textContent = `${settings.selector} { outline: ${settings.outlineThickness}px ${settings.outlineStyle} ${settings.outlineColor} !important; }`;
                 document.head.appendChild(outlineStyleEl);
 
-                // Inject grid overlay if enabled
                 if (settings.enableGrid) {
                     const gridStyleEl = document.createElement("style");
                     gridStyleEl.id = "outline-debugger-grid";
@@ -52,7 +47,6 @@
                     document.head.appendChild(gridStyleEl);
                 }
 
-                // Add dimension tooltips if enabled
                 if (settings.enableTooltips) {
                     const tooltip = document.createElement("div");
                     tooltip.id = "outline-debugger-tooltip";
@@ -92,7 +86,6 @@
                     document.addEventListener("mousemove", moveTooltip);
                     document.addEventListener("mouseout", hideTooltip);
 
-                    // Save tooltip listeners for removal later
                     window.__outlineDebuggerTooltipListeners = {
                         showTooltip,
                         moveTooltip,
@@ -100,15 +93,12 @@
                     };
                 }
 
-                // Add click-to-inspect if enabled
                 if (settings.enableInspector) {
                     function inspectorClick(e) {
-                        // Trigger only if Shift key is held
                         if (!e.shiftKey) return;
                         e.preventDefault();
                         e.stopPropagation();
 
-                        // Remove any existing inspector popup
                         const oldPopup = document.getElementById(
                             "outline-debugger-inspector"
                         );
@@ -143,7 +133,6 @@
                         inspector.textContent = info.trim();
                         document.body.appendChild(inspector);
 
-                        // Remove the inspector popup after 4 seconds
                         setTimeout(() => {
                             if (inspector) inspector.remove();
                         }, 4000);
@@ -153,9 +142,7 @@
                     window.__outlineDebuggerInspectorListener = inspectorClick;
                 }
 
-                // Set up a MutationObserver to reapply overlays if removed
                 const observer = new MutationObserver((mutationsList) => {
-                    // Check if our style elements are missing and re-add them if needed
                     if (!document.getElementById("outline-debugger-outlines")) {
                         document.head.appendChild(outlineStyleEl);
                     }
@@ -180,17 +167,14 @@
     }
 
     function removeDebugger() {
-        // Remove injected outline style
         const outlineStyleEl = document.getElementById(
             "outline-debugger-outlines"
         );
         if (outlineStyleEl) outlineStyleEl.remove();
 
-        // Remove grid overlay if present
         const gridStyleEl = document.getElementById("outline-debugger-grid");
         if (gridStyleEl) gridStyleEl.remove();
 
-        // Remove tooltip and its event listeners if they exist
         const tooltip = document.getElementById("outline-debugger-tooltip");
         if (tooltip) tooltip.remove();
         if (window.__outlineDebuggerTooltipListeners) {
@@ -209,7 +193,6 @@
             window.__outlineDebuggerTooltipListeners = null;
         }
 
-        // Remove click-to-inspect listener if exists
         if (window.__outlineDebuggerInspectorListener) {
             document.removeEventListener(
                 "click",
@@ -219,13 +202,11 @@
             window.__outlineDebuggerInspectorListener = null;
         }
 
-        // Disconnect MutationObserver if exists
         if (window.__outlineDebuggerObserver) {
             window.__outlineDebuggerObserver.disconnect();
             window.__outlineDebuggerObserver = null;
         }
 
-        // Remove any inspector popup if present
         const inspector = document.getElementById("outline-debugger-inspector");
         if (inspector) inspector.remove();
     }

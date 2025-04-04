@@ -1,4 +1,3 @@
-// Function to save settings automatically
 function saveSettings() {
     const newSettings = {
         outlineColor: document.getElementById("outlineColor").value,
@@ -10,14 +9,13 @@ function saveSettings() {
         enableTooltips: document.getElementById("enableTooltips").checked,
         enableInspector: document.getElementById("enableInspector").checked,
     };
-    chrome.storage.sync.set(newSettings, () => {
+    chrome.storage.local.set(newSettings, () => {
         console.log("Settings saved:", newSettings);
     });
 }
 
-// Load settings on popup open
 document.addEventListener("DOMContentLoaded", () => {
-    chrome.storage.sync.get(
+    chrome.storage.local.get(
         {
             outlineColor: "#ff0000",
             outlineThickness: "1",
@@ -46,14 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 });
 
-// Listen for changes on all form elements to auto-save
 document
     .querySelectorAll("#settingsForm input, #settingsForm select")
     .forEach((el) => {
         el.addEventListener("input", saveSettings);
     });
 
-// Toggle debugger on active tab when clicking the button
 document.getElementById("toggleDebugger").addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];

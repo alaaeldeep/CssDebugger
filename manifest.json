@@ -1,13 +1,19 @@
 {
     "manifest_version": 3,
-    "name": "Advanced Outline Debugger",
+    "name": "CSS Debugger",
     "version": "1.0",
-    "description": "Toggle CSS outlines, grid overlays, dimension tooltips, DOM mutation monitoring, and click-to-inspect.",
-    "permissions": ["scripting", "activeTab", "storage"],
-    "action": {
-        "default_popup": "popup.html",
-        "default_title": "Advanced Outline Debugger"
+    "description": "Toggle CSS outlines and other debugging overlays.",
+    "icons": {
+        "128": "icon.png"
     },
+    "action": {
+        "default_icon": {
+            "128": "icon.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "CSS Debugger"
+    },
+    "permissions": ["scripting", "activeTab", "storage"],
     "background": {
         "service_worker": "background.js"
     },
@@ -16,8 +22,7 @@
             "suggested_key": {
                 "default": "Ctrl+Shift+O"
             },
-            "description": "Toggle outline debugger"
+            "description": "Toggle CSS Debugger"
         }
     }
 }
-    
