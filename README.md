@@ -21,6 +21,11 @@ A lightweight browser extension to help frontend developers visually debug CSS l
     -   Margins
     -   Dimensions
 
+## 🧩 Install from Edge Add-ons Store
+
+[Install from Microsoft Edge Add-ons Store](https://microsoftedge.microsoft.com/addons/detail/css-debugger/momemhcffepcfdclfnmnmocodlmphofn)
+
+
 ## 🔧 How to Install (Unpacked)
 
 1. Clone or download this repo as a ZIP.
@@ -36,10 +41,6 @@ Perfect for:
 -   UI/UX designers
 -   QA testers
 
-## 📦 Coming Soon
-
--   Edge Add-ons Store version (under review)
--   Chrome Web Store version (pending support for Egypt)
 
 ---
 
